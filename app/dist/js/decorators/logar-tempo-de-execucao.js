@@ -1,5 +1,13 @@
 export function logarTempoDeExecucao() {
     return function (target, propertKey, descriptor) {
+        const metodoOriginal = descriptor.value;
+        descriptor.value = function () {
+            const t1 = performance.now();
+            const retorno = metodoOriginal();
+            const t2 = performance.now();
+            console.log(`${propertKey}, Tempo de execução: ${(t1 - t2) / 1000} segundos.`);
+            retorno;
+        };
         return descriptor;
     };
 }
