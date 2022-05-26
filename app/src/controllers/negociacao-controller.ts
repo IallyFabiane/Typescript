@@ -20,7 +20,7 @@ export class NegociacaoController {
         this.negociacoesView.update(this.negociacoes);
     }
 
-    @logarTempoDeExecucao() //decorator
+    @logarTempoDeExecucao() //decorator. O tempo será exibido em milissegundos.
     public adiciona(): void {
        
         const negociacao = Negociacao.criaDe(
