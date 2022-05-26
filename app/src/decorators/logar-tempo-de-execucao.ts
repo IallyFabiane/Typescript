@@ -5,11 +5,11 @@ export function logarTempoDeExecucao() {
         descriptor: PropertyDescriptor //tem uma referência para o método original
     ) {
         const metodoOriginal = descriptor.value;
-        descriptor.value = function() {
+        descriptor.value = function(...args: Array<any>) { //utilizando rest operator: aqui independentememnte do número de parâmetors passados para a função eles serão tratados como um array do tipo any
             const t1 = performance.now();
-           const retorno = metodoOriginal() ;// chamar o método original
+           const retorno = metodoOriginal.apply(this, args) ;// chamar o método original utilizando o método apply(contexto, parâmetros).
             const t2 = performance.now();
-            console.log(`${propertKey}, Tempo de execução: ${(t1 - t2)/ 1000} segundos.`);
+            console.log(`${propertKey}, Tempo de execução: ${(t1 - t2)/ 1000} segundos.`); //propertKey etorna o nome da propriedade
             retorno
         }
         
