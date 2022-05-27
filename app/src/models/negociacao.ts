@@ -1,6 +1,6 @@
-import { Imprimivel } from "../utils/imprimivel.js";
+import { Modelo } from "../interfaces/modelo.js";
 
-export class Negociacao implements Imprimivel { //a palavra-chave implements permite que implememntemos o comportamento de uma interface
+export class Negociacao implements Modelo<Negociacao>{ //a palavra-chave implements permite que implememntemos o comportamento de uma interface
     constructor(
         private _data: Date, 
         public readonly quantidade: number, 
