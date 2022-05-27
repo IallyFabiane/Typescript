@@ -5,9 +5,7 @@ export class Negociacao implements Imprimivel { //a palavra-chave implements per
         private _data: Date, 
         public readonly quantidade: number, 
         public readonly valor: number
-    ) {
-        super(); //chamando o constructor de Imprimivel
-    }
+    ) {}
 
     get volume(): number {
         return this.quantidade * this.valor;
