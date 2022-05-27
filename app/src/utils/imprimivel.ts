@@ -1,3 +1,3 @@
-export abstract class Imprimivel {
-    public abstract paraTexto(): string; //polimorfismo: capacidade que um objeto tem de ser referenciado de múltiplas formas
+export interface Imprimivel { //toda interface é pública e seus métodos abstratos
+    paraTexto(): string; //polimorfismo: capacidade que um objeto tem de ser referenciado de múltiplas formas
 }
