@@ -6,6 +6,7 @@ import { Negociacao } from '../models/negociacao.js';
 import { Negociacoes } from '../models/negociacoes.js';
 import { MensagemView } from '../views/mensagem-view.js';
 import { NegociacoesView } from '../views/negociacoes-view.js';
+import { NegociacoesDoDia } from '../interfaces/negociacao-do-dia.js'
 
 export class NegociacaoController {
     @domInjector('#data')
@@ -46,7 +47,7 @@ export class NegociacaoController {
     importaDados(): void {
         fetch('http://localhost:8080/dados')  //api globalmente disponível no navegador. Recebe como parâmetro o endereço da api
         .then(res =>  res.json()) //retorna assíncronamente uma resposta e essa resposta é convertida para um objeto json
-        .then((dados: any[]) => {
+        .then((dados: NegociacoesDoDia[]) => {
             return dados.map(dadoDeHoje => {
                 return new Negociacao(new Date(), dadoDeHoje.vezes, dadoDeHoje.montante)
             })
