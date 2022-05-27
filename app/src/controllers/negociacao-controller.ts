@@ -44,7 +44,19 @@ export class NegociacaoController {
     }
 
     importaDados(): void {
-        alert('oi')
+        fetch('http://localhost:8080/dados')  //api globalmente disponível no navegador. Recebe como parâmetro o endereço da api
+        .then(res =>  res.json()) //retorna assíncronamente uma resposta e essa resposta é convertida para um objeto json
+        .then((dados: any[]) => {
+            return dados.map(dadoDeHoje => {
+                return new Negociacao(new Date(), dadoDeHoje.vezes, dadoDeHoje.montante)
+            })
+        })
+        .then(negociacoesDeHoje => {
+            for(let negociacao of negociacoesDeHoje) {
+                this.negociacoes.adiciona(negociacao);
+            }
+            this.negociacoesView.update(this.negociacoes) //atualizando a view
+        });
     }
 
     private ehDiaUtil(data: Date) {
