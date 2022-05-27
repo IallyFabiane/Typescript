@@ -24,6 +24,12 @@ export class Negociacao implements Imprimivel { //a palavra-chave implements per
        `;
     }
 
+    public ehIgual(negociacao: Negociacao): boolean { //método que evita negociações duplicadas
+        return this.data.getDate() === negociacao.data.getDate() 
+        && this.data.getMonth() === negociacao.data.getMonth()
+        && this.data.getFullYear() === negociacao.data.getFullYear()
+    }
+
     public static criaDe(dataString: string, quantidadeString: string, valorString: string): Negociacao { //passando string para números
         const exp = /-/g;
         const date = new Date(dataString.replace(exp, ','));
